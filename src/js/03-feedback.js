@@ -1,4 +1,4 @@
-import fnLodTrot from "lodash.throttle";
+import throttle from "lodash.throttle";
 const formNode = document.querySelector(".feedback-form")
 const emailInputNode = document.querySelector(".feedback-form input")
 const messageInputNode = document.querySelector(".feedback-form textarea")
@@ -11,7 +11,7 @@ const handleInput = e => {
   }
   localStorage.setItem("feedback-form-state",JSON.stringify(objToLS))
 }
-formNode.addEventListener("input",fnLodTrot(handleInput,500))
+formNode.addEventListener("input",throttle(handleInput,500))
 
 const checkForm = ()=> {
   let status = localStorage.getItem("feedback-form-state") 
@@ -24,6 +24,8 @@ checkForm()
 
 const handleSubmit = e => {
   e.preventDefault()
+  if (!(emailInputNode.value && messageInputNode.value))
+    return alert(`Fill the fields`)    
   let  objToLS = {
     email:emailInputNode.value,
     message:messageInputNode.value
