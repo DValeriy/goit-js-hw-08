@@ -2,11 +2,10 @@ import fnLodTrot from "lodash.throttle";
 const formNode = document.querySelector(".feedback-form")
 const emailInputNode = document.querySelector(".feedback-form input")
 const messageInputNode = document.querySelector(".feedback-form textarea")
-let objToLS = {}
 
 const handleInput = e => {
   const { email, message } = formNode.elements
-  objToLS = {
+  let objToLS = {
     email:email.value,
     message:message.value
   }
@@ -18,17 +17,17 @@ const checkForm = ()=> {
   let status = localStorage.getItem("feedback-form-state") 
   if (status ) {
     emailInputNode.value = JSON.parse(status).email;
-    messageInputNode.value = JSON.parse(status).message;
-    objToLS = {
-    email:emailInputNode.value,
-    message:messageInputNode.value
-  }
+    messageInputNode.value = JSON.parse(status).message;  
   }
 }
 checkForm()
 
 const handleSubmit = e => {
   e.preventDefault()
+  let  objToLS = {
+    email:emailInputNode.value,
+    message:messageInputNode.value
+  }
   emailInputNode.value=''
   messageInputNode.value=''
   localStorage.clear()
