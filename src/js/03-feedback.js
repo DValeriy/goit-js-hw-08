@@ -30,8 +30,7 @@ const handleSubmit = e => {
     email:emailInputNode.value,
     message:messageInputNode.value
   }
-  emailInputNode.value=''
-  messageInputNode.value=''
+  formNode.reset();
   localStorage.clear()
   console.log(objToLS)
 }
