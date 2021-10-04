@@ -5,7 +5,7 @@ const messageInputNode = document.querySelector(".feedback-form textarea")
 
 const handleInput = e => {
   const { email, message } = formNode.elements
-  let objToLS = {
+  const objToLS = {
     email:email.value,
     message:message.value
   }
@@ -14,7 +14,7 @@ const handleInput = e => {
 formNode.addEventListener("input",throttle(handleInput,500))
 
 const checkForm = ()=> {
-  let status = localStorage.getItem("feedback-form-state") 
+  const status = localStorage.getItem("feedback-form-state") 
   if (status ) {
     emailInputNode.value = JSON.parse(status).email;
     messageInputNode.value = JSON.parse(status).message;  
@@ -26,7 +26,7 @@ const handleSubmit = e => {
   e.preventDefault()
   if (!(emailInputNode.value && messageInputNode.value))
     return alert(`Fill the fields`)    
-  let  objToLS = {
+  const  objToLS = {
     email:emailInputNode.value,
     message:messageInputNode.value
   }
